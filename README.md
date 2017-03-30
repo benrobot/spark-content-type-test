@@ -1,10 +1,12 @@
 # spark-content-type-test
 
+**THIS ISSUE APPEARS TO BE DUE TO POSTMAN AND NOT THE SPARK FRAMEWORK**
+
 1. To build and run execute
 ```
 mvn clean install exec:java
 ```
-2. Use a browser or postman to call http://localhost:4567/hello (returns an invalid PDF file)
+2. Use postman to call http://localhost:4567/hello (returns an invalid PDF file)
 3. Expected output was
 ```
 before: beforeCounter = 1
