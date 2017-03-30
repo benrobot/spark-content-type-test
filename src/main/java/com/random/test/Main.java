@@ -3,12 +3,13 @@ package com.random.test;
 import static spark.Spark.*;
 
 public class Main {
-public static int beforeCounter = 0;
-public static int getCounter = 0;
-public static int afterCounter = 0;
-public static int afterAfterCounter = 0;
+	public static int beforeCounter = 0;
+	public static int getCounter = 0;
+	public static int afterCounter = 0;
+	public static int afterAfterCounter = 0;
+
 	public static void main(String[] args) {
-		
+
 		before((req, res) -> {
 			beforeCounter++;
 			System.out.println("before: beforeCounter = " + beforeCounter);
@@ -16,7 +17,7 @@ public static int afterAfterCounter = 0;
 			System.out.println("before: afterCounter = " + afterCounter);
 			System.out.println("before: afterAfterCounter = " + afterAfterCounter);
 		});
-		
+
 		get("/hello", (req, res) -> {
 			getCounter++;
 			System.out.println("get: beforeCounter = " + beforeCounter);
@@ -24,9 +25,11 @@ public static int afterAfterCounter = 0;
 			System.out.println("get: afterCounter = " + afterCounter);
 			System.out.println("get: afterAfterCounter = " + afterAfterCounter);
 			res.type("application/pdf");
-			return "Hello World";
+			return "get: beforeCounter = " + beforeCounter + System.lineSeparator() + "get: getCounter = " + getCounter
+					+ System.lineSeparator() + "get: afterCounter = " + afterCounter + System.lineSeparator()
+					+ "get: afterAfterCounter = " + afterAfterCounter;
 		});
-		
+
 		after("/hello", (req, res) -> {
 			afterCounter++;
 			System.out.println("after: beforeCounter = " + beforeCounter);
@@ -34,7 +37,7 @@ public static int afterAfterCounter = 0;
 			System.out.println("after: afterCounter = " + afterCounter);
 			System.out.println("after: afterAfterCounter = " + afterAfterCounter);
 		});
-		
+
 		afterAfter("/hello", (req, res) -> {
 			afterAfterCounter++;
 			System.out.println("afterAfter: beforeCounter = " + beforeCounter);
